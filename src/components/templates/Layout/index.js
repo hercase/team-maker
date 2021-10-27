@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { forwardRef, useEffect } from "react";
-import InstallPWA from "components/InstallPWA";
-import Logo from "components/Logo";
+import InstallPWA from "components/molecules/InstallPWA";
+import Logo from "components/atoms/Logo";
 import styled from "styled-components";
 
 const StyledLayout = styled.div`

@@ -1,24 +1,22 @@
-import { useEffect, useRef, useState } from "react";
-import "./styles.scss";
-import { ReactComponent as Versus } from "../../versus.svg";
-import { useHistory } from "react-router-dom";
-import { matchStore } from "store";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { getFirestore, addDoc, collection } from "firebase/firestore";
-import app from "../../services/firebase";
-
 // Components
-import Alert from "components/Alert/Alert";
-import Button from "components/Button";
-import Layout from "components/Layout";
-import CheckIcon from "components/Icons/CheckIcon";
-import Feedback from "components/Feedback";
-import PlayersList from "./PlayersList";
-import { shuffle } from "lodash";
+import Alert from "components/atoms/Alert";
+import Button from "components/atoms/Button";
+import Feedback from "components/templates/Feedback";
+import CheckIcon from "components/atoms/Icons/CheckIcon";
+import Layout from "components/templates/Layout";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { AnimateSharedLayout, motion } from "framer-motion";
+import { shuffle } from "lodash";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { matchStore } from "store";
+import app from "services/firebase";
 import { generateShareImage } from "./generateShareImage";
 import ListHead from "./ListHead";
+import PlayersList from "./PlayersList";
 
 const ListTeam = () => {
   const db = getFirestore(app);
@@ -101,7 +99,7 @@ const ListTeam = () => {
             >
               <PlayersList players={firstHalf} color="#FFFFFF" />
               <div className="z-10 absolute bottom-3">
-                <Versus width={45} height={45} />
+                <Image alt="Versus icon" src={"/img/versus.svg"} width={45} height={45} />
               </div>
               <PlayersList players={secondHalf} color="#2C3590" />
             </motion.div>

@@ -1,4 +1,4 @@
-import Button from "components/Button";
+import Button from "components/atoms/Button";
 import { useEffect, useState } from "react";
 import { ImDownload } from "react-icons/im";
 

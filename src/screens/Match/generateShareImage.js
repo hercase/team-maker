@@ -1,5 +1,5 @@
 import { renderToString } from "react-dom/server";
-import Logo from "components/Logo";
+import Logo from "components/atoms/Logo";
 import html2canvas from "html2canvas";
 import { dataURLtoFile } from "../../helpers";
 

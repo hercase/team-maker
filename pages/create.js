@@ -2,11 +2,11 @@ import { useState } from "react";
 import { matchStore } from "store";
 import { useLocalStorage } from "hooks/useLocalStorage";
 
-import Layout from "components/Layout";
-import DatePicker from "components/DatePicker";
-import Feedback from "components/Feedback";
+import Layout from "components/templates/Layout";
+import DatePicker from "components/atoms/DatePicker";
+import Feedback from "components/templates/Feedback";
 import { shuffle } from "lodash";
-import Button from "components/Button";
+import Button from "components/atoms/Button";
 import { useRouter } from "next/router";
 
 const Create = () => {

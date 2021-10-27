@@ -861,42 +861,6 @@ video {
   background-color: #171f6d;
 }
 
-.shared {
-  width: 650px;
-  height: -webkit-min-content;
-  height: -moz-min-content;
-  height: min-content;
-}
-
-.shared__header {
-  display: flex;
-  justify-content: center;
-}
-
-.home {
-  display: grid;
-  grid-template-rows: 80px 1fr 120px;
-  grid-gap: 1rem;
-  gap: 1rem;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-}
-
-.home .carousel__item {
-  display: grid;
-  grid-template-rows: 1.5fr 1fr;
-  padding: 0 2rem 2rem;
-  justify-content: center;
-  align-items: center;
-}
-
-@media screen and (min-width: 620px) {
-  .home {
-    grid-template-rows: 100px 1fr minmax(-webkit-min-content, 160px);
-    grid-template-rows: 100px 1fr minmax(min-content, 160px);
-  }
-}
-
 .dots button {
   border-color: #2c3590 !important;
   background: #fff !important;

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 import ShirtIcon from "components/atoms/Icons/ShirtIcon";
-import { trucanteString } from "../../helpers";
+import { trucanteString } from "helpers";
 
 const PlayersList = ({ players = [], color }) => {
   return (

@@ -9,12 +9,12 @@ import { generateShareImage } from "./generateShareImage";
 import useMatch from "hooks/useMatch";
 
 // Components
-import Button from "components/Button";
-import Layout from "components/Layout";
-import ShareIcon from "components/Icons/ShareIcon";
-import Feedback from "components/Feedback";
+import Button from "components/atoms/Button";
+import Layout from "components/templates/Layout";
+import ShareIcon from "components/atoms/Icons/ShareIcon";
+import Feedback from "components/templates/Feedback";
 import PlayersList from "./PlayersList";
-import LoadingIcon from "components/Icons/LoadingIcon";
+import LoadingIcon from "components/atoms/Icons/LoadingIcon";
 
 const Match = () => {
   const { id } = useParams();
