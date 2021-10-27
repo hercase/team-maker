@@ -1,5 +1,5 @@
+import Button from "components/Button";
 import { useEffect, useState } from "react";
-import Button from "../Button";
 import { ImDownload } from "react-icons/im";
 
 const InstallPWA = () => {

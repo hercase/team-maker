@@ -10,6 +10,7 @@ import WavyDivider from "components/WavyDivider";
 import InstallPWA from "components/InstallPWA";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const Home = () => {
   const router = useRouter();
@@ -43,7 +44,7 @@ const Home = () => {
       <section className="flex justify-center items-center h-full">
         <Logo height={30} />
       </section>
-      {/* <Carousel
+      <Carousel
         responsive={responsive}
         infinite={true}
         showDots={true}
@@ -52,18 +53,45 @@ const Home = () => {
         containerClass="container mx-auto h-full"
         itemClass="carousel__item"
       >
-        <CarrouselItem
-          text="Escribe el nombre de las personas que van a participar"
-          SVGIcon={FormExample}
-        />
-        <CarrouselItem
-          text="Team Maker se encarga de mezclarlos aleatoriamente"
-          SVGIcon={RandomExample}
-        />
-        <CarrouselItem
-          text="Comparte el resultado en donde quieras"
-          SVGIcon={ShareExample}
-        />
+        <div className="flex items-end justify-center h-full">
+          <Image
+            alt="first-slide"
+            undraw_text_field_htlv
+            src="/svg/slide-1.svg"
+            className="w-full h-auto object-cover "
+            width={500}
+            height={500}
+          />
+          <p className="font-sans text-center text-xl">
+            Escribe el nombre de las personas que van a participar
+          </p>
+        </div>
+
+        <div className="flex items-end justify-center h-full">
+          <Image
+            alt="second-slide"
+            src="/svg/slide-2.svg"
+            className="w-full h-auto object-cover "
+            width={500}
+            height={500}
+          />
+          <p className="font-sans text-center text-xl">
+            Team Maker se encarga de mezclarlos aleatoriamente
+          </p>
+        </div>
+
+        <div className="flex items-end justify-center h-full">
+          <Image
+            alt="third-slide"
+            src="/svg/slide-3.svg"
+            className="w-full h-auto object-cover "
+            width={500}
+            height={500}
+          />
+          <p className="font-sans text-center text-xl">
+            Comparte el resultado en donde quieras
+          </p>
+        </div>
       </Carousel>
       <section className="flex flex-col h-full">
         <div className="relative">
@@ -71,26 +99,22 @@ const Home = () => {
         </div>
         <div className="home__footer">
           <div className="flex items-center container mx-auto h-full md:justify-between justify-end px-12 sm:px-0">
-            <Isotipo className="hidden md:block h-12" />
+            <Image
+              alt="isotipo"
+              src="/svg/isotipo.svg"
+              height="3rem"
+              width="3rem"
+            />
             <div className="flex gap-3">
               <InstallPWA />
               <Button onClick={navigate}>Comenzar</Button>
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
     </StyledHome>
   );
 };
-
-const CarrouselItem = ({ SVGIcon, text }) => (
-  <>
-    <div className="flex items-end justify-center h-full">
-      <SVGIcon className="w-full h-auto object-cover md:w-9/12" />
-    </div>
-    <p className="font-sans text-center text-xl">{text}</p>
-  </>
-);
 
 const StyledHome = styled.div`
   display: grid;
@@ -139,10 +163,5 @@ const StyledHome = styled.div`
     height: 100% !important;
   }
 `;
-
-CarrouselItem.propTypes = {
-  SVGIcon: PropTypes.any,
-  text: PropTypes.any,
-};
 
 export default Home;

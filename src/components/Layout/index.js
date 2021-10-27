@@ -1,10 +1,19 @@
 import PropTypes from "prop-types";
 import { forwardRef, useEffect } from "react";
-import "./styles.scss";
-import Logo from "../Logo";
-
-// Components
 import InstallPWA from "components/InstallPWA";
+import Logo from "components/Logo";
+import styled from "styled-components";
+
+const StyledLayout = styled.div`
+  display: grid;
+  grid-template-rows: 60px 1fr 60px;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+
+  .capturing {
+    width: 550px !important;
+  }
+`;
 
 const LayoutFunction = ({ children }, ref) => {
   useEffect(() => {
@@ -13,15 +22,13 @@ const LayoutFunction = ({ children }, ref) => {
   }, []);
 
   return (
-    <div ref={ref} className="layout container background">
+    <StyledLayout ref={ref} className="layout container background">
       <div className="grid place-items-center h-full w-full bg-primaryDark shadow-xl relative">
         <Logo width={150} dark />
-        <div className="absolute right-4">
-          <InstallPWA />
-        </div>
+        <div className="absolute right-4">{/* <InstallPWA /> */}</div>
       </div>
       {children}
-    </div>
+    </StyledLayout>
   );
 };
 
