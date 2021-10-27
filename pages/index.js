@@ -53,7 +53,7 @@ const Home = () => {
         <CarrouselItem>
           <Image
             alt="first-slide"
-            src="/svg/slide-1.svg"
+            src="/img/slide-1.svg"
             width={150}
             height={250}
           />
@@ -65,7 +65,7 @@ const Home = () => {
         <CarrouselItem>
           <Image
             alt="second-slide"
-            src="/svg/slide-2.svg"
+            src="/img/slide-2.svg"
             width={150}
             height={250}
           />
@@ -77,7 +77,7 @@ const Home = () => {
         <CarrouselItem>
           <Image
             alt="third-slide"
-            src="/svg/slide-3.svg"
+            src="/img/slide-3.svg"
             width={150}
             height={250}
           />
@@ -93,7 +93,7 @@ const Home = () => {
           </g>
         </svg>
         <div className="footer__content">
-          <Image alt="isotipo" src="/svg/isotipo.svg" height={50} width={50} />
+          <Image alt="isotipo" src="/img/isotipo.svg" height={50} width={50} />
           <div className="flex gap-3">
             <InstallPWA />
             <Button onClick={navigate}>Comenzar</Button>
@@ -163,10 +163,10 @@ const CarrouselItem = styled.div`
   display: grid;
   grid-template-rows: 2fr 150px;
   padding: 4rem 0;
-  align-items: center;
+  align-items: start;
   gap: 1rem;
   height: 100%;
-  width: 95%;
+  width: 90%;
   margin: 0 auto;
 `;
 
