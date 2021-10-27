@@ -6,7 +6,6 @@ import Logo from "components/Logo";
 import Button from "components/Button";
 
 import Carousel from "react-multi-carousel";
-import WavyDivider from "components/WavyDivider";
 import InstallPWA from "components/InstallPWA";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -50,65 +49,54 @@ const Home = () => {
         showDots={true}
         removeArrowOnDeviceType={["mobile", "table", "desktop"]}
         dotListClass="dots"
-        containerClass="container mx-auto h-full"
-        itemClass="carousel__item"
       >
-        <div className="flex items-end justify-center h-full">
+        <CarrouselItem>
           <Image
             alt="first-slide"
-            undraw_text_field_htlv
             src="/svg/slide-1.svg"
-            className="w-full h-auto object-cover "
-            width={500}
-            height={500}
+            width={150}
+            height={250}
           />
           <p className="font-sans text-center text-xl">
             Escribe el nombre de las personas que van a participar
           </p>
-        </div>
+        </CarrouselItem>
 
-        <div className="flex items-end justify-center h-full">
+        <CarrouselItem>
           <Image
             alt="second-slide"
             src="/svg/slide-2.svg"
-            className="w-full h-auto object-cover "
-            width={500}
-            height={500}
+            width={150}
+            height={250}
           />
           <p className="font-sans text-center text-xl">
             Team Maker se encarga de mezclarlos aleatoriamente
           </p>
-        </div>
+        </CarrouselItem>
 
-        <div className="flex items-end justify-center h-full">
+        <CarrouselItem>
           <Image
             alt="third-slide"
             src="/svg/slide-3.svg"
-            className="w-full h-auto object-cover "
-            width={500}
-            height={500}
+            width={150}
+            height={250}
           />
           <p className="font-sans text-center text-xl">
             Comparte el resultado en donde quieras
           </p>
-        </div>
+        </CarrouselItem>
       </Carousel>
-      <section className="flex flex-col h-full">
-        <div className="relative">
-          <WavyDivider className="w-full" />
-        </div>
-        <div className="home__footer">
-          <div className="flex items-center container mx-auto h-full md:justify-between justify-end px-12 sm:px-0">
-            <Image
-              alt="isotipo"
-              src="/svg/isotipo.svg"
-              height="3rem"
-              width="3rem"
-            />
-            <div className="flex gap-3">
-              <InstallPWA />
-              <Button onClick={navigate}>Comenzar</Button>
-            </div>
+      <section className="footer">
+        <svg className="footer__divider" viewBox="0 0 147 8">
+          <g transform="translate(-25.771 -143.03)">
+            <path d="m25.771 147.21c44.524-13.283 97.977 10.342 148.1-0.90321v4.8173h-148.08z" />
+          </g>
+        </svg>
+        <div className="footer__content">
+          <Image alt="isotipo" src="/svg/isotipo.svg" height={50} width={50} />
+          <div className="flex gap-3">
+            <InstallPWA />
+            <Button onClick={navigate}>Comenzar</Button>
           </div>
         </div>
       </section>
@@ -118,37 +106,44 @@ const Home = () => {
 
 const StyledHome = styled.div`
   display: grid;
-  grid-template-rows: 80px 1fr 120px;
+  grid-template-rows: 80px 1fr 10rem;
   gap: 1rem;
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
   background-color: var(--headline);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 95vw;
+  background-color: ${(props) => props.theme.colors.headline};
 
-  .carousel__item {
-    display: grid;
-    grid-template-rows: 1.5fr 1fr;
-    padding: 2rem;
-    padding-top: 0;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @media screen and (min-width: 620px) {
-    & {
-      grid-template-rows: 100px 1fr minmax(min-content, 160px);
-    }
-  }
-
-  &__footer {
+  & .footer {
+    position: relative;
     width: 100%;
     height: 100%;
     padding-bottom: 0;
     padding-top: 2rem;
+    background: ${(props) => props.theme.colors.primaryDark};
 
-    background: var(--primary-dark);
+    &__divider {
+      position: absolute;
+      width: 101%;
+      fill: ${(props) => props.theme.colors.primaryDark};
+      bottom: 95%;
+      left: -2px;
+    }
+
+    &__content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      height: 100%;
+    }
   }
 
   .dots {
+    bottom: 3rem;
+
     & button {
       border-color: #2c3590 !important;
       background: white !important;
@@ -162,6 +157,17 @@ const StyledHome = styled.div`
   .react-multi-carousel-track {
     height: 100% !important;
   }
+`;
+
+const CarrouselItem = styled.div`
+  display: grid;
+  grid-template-rows: 2fr 150px;
+  padding: 4rem 0;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  width: 95%;
+  margin: 0 auto;
 `;
 
 export default Home;
