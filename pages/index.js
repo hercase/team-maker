@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useEffect } from "react";
 import "react-multi-carousel/lib/styles.css";
 
@@ -51,39 +50,18 @@ const Home = () => {
         dotListClass="dots"
       >
         <CarrouselItem>
-          <Image
-            alt="first-slide"
-            src="/img/slide-1.svg"
-            width={150}
-            height={250}
-          />
-          <p className="font-sans text-center text-xl">
-            Escribe el nombre de las personas que van a participar
-          </p>
+          <Image alt="first-slide" src="/img/slide-1.svg" width={150} height={250} />
+          <p className="font-sans text-center text-xl">Escribe el nombre de las personas que van a participar</p>
         </CarrouselItem>
 
         <CarrouselItem>
-          <Image
-            alt="second-slide"
-            src="/img/slide-2.svg"
-            width={150}
-            height={250}
-          />
-          <p className="font-sans text-center text-xl">
-            Team Maker se encarga de mezclarlos aleatoriamente
-          </p>
+          <Image alt="second-slide" src="/img/slide-2.svg" width={150} height={250} />
+          <p className="font-sans text-center text-xl">Team Maker se encarga de mezclarlos aleatoriamente</p>
         </CarrouselItem>
 
         <CarrouselItem>
-          <Image
-            alt="third-slide"
-            src="/img/slide-3.svg"
-            width={150}
-            height={250}
-          />
-          <p className="font-sans text-center text-xl">
-            Comparte el resultado en donde quieras
-          </p>
+          <Image alt="third-slide" src="/img/slide-3.svg" width={150} height={250} />
+          <p className="font-sans text-center text-xl">Comparte el resultado en donde quieras</p>
         </CarrouselItem>
       </Carousel>
       <section className="footer">

@@ -12,7 +12,7 @@ import useMatch from "hooks/useMatch";
 import Button from "components/Button";
 import Layout from "components/Layout";
 import ShareIcon from "components/Icons/ShareIcon";
-import Feedback from "components/Feedback/Feedback";
+import Feedback from "components/Feedback";
 import PlayersList from "./PlayersList";
 import LoadingIcon from "components/Icons/LoadingIcon";
 

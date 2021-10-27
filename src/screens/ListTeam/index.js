@@ -13,7 +13,7 @@ import Alert from "components/Alert/Alert";
 import Button from "components/Button";
 import Layout from "components/Layout";
 import CheckIcon from "components/Icons/CheckIcon";
-import Feedback from "components/Feedback/Feedback";
+import Feedback from "components/Feedback";
 import PlayersList from "./PlayersList";
 import { shuffle } from "lodash";
 import { AnimateSharedLayout, motion } from "framer-motion";
@@ -89,11 +89,7 @@ const ListTeam = () => {
     <Layout>
       <div className="flex flex-col">
         <div className="screenshot flex flex-col gap-5 p-4" ref={content}>
-          <ListHead
-            maxPlayers={players.length}
-            location={location}
-            date={date}
-          />
+          <ListHead maxPlayers={players.length} location={location} date={date} />
 
           <AnimateSharedLayout>
             <motion.div

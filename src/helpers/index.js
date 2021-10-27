@@ -1,7 +1,7 @@
 // Strings
 
 import { format } from "date-fns";
-import es from "date-fns/esm/locale/es/index.js";
+import { es } from "date-fns/locale";
 
 export function filterPlayers(str) {
   const regex = /[a-zÀ-ÿ\s]+/gi;
