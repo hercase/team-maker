@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "styles/globals.css";
 import "styles/tailwind.css";
 import "styles/date-picker.css";
@@ -33,6 +34,11 @@ const MyApp = ({ Component, pageProps }) => {
       </StyledLayout>
     </ThemeProvider>
   );
+};
+
+MyApp.propTypes = {
+  Component: PropTypes.any,
+  pageProps: PropTypes.any,
 };
 
 export default MyApp;

@@ -25,7 +25,9 @@ const LayoutFunction = ({ children }, ref) => {
     <StyledLayout ref={ref} className="layout container background">
       <div className="grid place-items-center h-full w-full bg-primaryDark shadow-xl relative">
         <Logo width={150} dark />
-        <div className="absolute right-4">{/* <InstallPWA /> */}</div>
+        <div className="absolute right-4">
+          <InstallPWA />
+        </div>
       </div>
       {children}
     </StyledLayout>

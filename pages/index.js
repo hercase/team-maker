@@ -1,14 +1,12 @@
-import { useEffect } from "react";
-import "react-multi-carousel/lib/styles.css";
-
-import Logo from "components/Logo";
-import Button from "components/Button";
-
-import Carousel from "react-multi-carousel";
-import InstallPWA from "components/InstallPWA";
-import styled from "styled-components";
-import { useRouter } from "next/router";
+import Button from "components/atoms/Button";
+import Logo from "components/atoms/Logo";
+import InstallPWA from "components/molecules/InstallPWA";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import styled from "styled-components";
 
 const Home = () => {
   const router = useRouter();
