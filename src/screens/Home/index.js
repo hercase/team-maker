@@ -1,18 +1,23 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
+import "./styles.scss";
 import "react-multi-carousel/lib/styles.css";
 
+import { ReactComponent as FormExample } from "../../styles/svg/undraw_text_field_htlv.svg";
+import { ReactComponent as RandomExample } from "../../styles/svg/undraw_random_thoughts_xejj.svg";
+import { ReactComponent as ShareExample } from "../../styles/svg/undraw_Social_media_re_w12q.svg";
+import { ReactComponent as Isotipo } from "../../styles/svg/isotipo.svg";
+
+import { useHistory } from "react-router-dom";
 import Logo from "components/Logo";
 import Button from "components/Button";
 
 import Carousel from "react-multi-carousel";
 import WavyDivider from "components/WavyDivider";
 import InstallPWA from "components/InstallPWA";
-import styled from "styled-components";
-import { useRouter } from "next/router";
 
 const Home = () => {
-  const router = useRouter();
+  const history = useHistory();
 
   useEffect(() => {
     let vh = window.innerHeight * 0.01;
@@ -20,7 +25,7 @@ const Home = () => {
   }, []);
 
   const navigate = () => {
-    router.push("/create");
+    history.push({ pathname: "/create" });
   };
 
   const responsive = {
@@ -39,11 +44,11 @@ const Home = () => {
   };
 
   return (
-    <StyledHome>
+    <div className="home container">
       <section className="flex justify-center items-center h-full">
         <Logo height={30} />
       </section>
-      {/* <Carousel
+      <Carousel
         responsive={responsive}
         infinite={true}
         showDots={true}
@@ -78,8 +83,8 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section> */}
-    </StyledHome>
+      </section>
+    </div>
   );
 };
 
@@ -91,54 +96,6 @@ const CarrouselItem = ({ SVGIcon, text }) => (
     <p className="font-sans text-center text-xl">{text}</p>
   </>
 );
-
-const StyledHome = styled.div`
-  display: grid;
-  grid-template-rows: 80px 1fr 120px;
-  gap: 1rem;
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
-  background-color: var(--headline);
-
-  .carousel__item {
-    display: grid;
-    grid-template-rows: 1.5fr 1fr;
-    padding: 2rem;
-    padding-top: 0;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @media screen and (min-width: 620px) {
-    & {
-      grid-template-rows: 100px 1fr minmax(min-content, 160px);
-    }
-  }
-
-  &__footer {
-    width: 100%;
-    height: 100%;
-    padding-bottom: 0;
-    padding-top: 2rem;
-
-    background: var(--primary-dark);
-  }
-
-  .dots {
-    & button {
-      border-color: #2c3590 !important;
-      background: white !important;
-    }
-
-    & .react-multi-carousel-dot--active button {
-      background: #171f6d !important;
-    }
-  }
-
-  .react-multi-carousel-track {
-    height: 100% !important;
-  }
-`;
 
 CarrouselItem.propTypes = {
   SVGIcon: PropTypes.any,

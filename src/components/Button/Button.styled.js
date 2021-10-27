@@ -1,0 +1,40 @@
+import styled from "styled-components";
+
+export const StyledButton = styled.button`
+  min-width: 40px;
+
+  position: relative;
+  align-items: center;
+  border-color: rgba(203, 213, 224, 1);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+  display: inline-flex;
+  justify-content: center;
+  opacity: 1;
+  padding: 0.5rem 0.7rem;
+  transition: background-color 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+  user-select: none;
+
+  transition: all 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  filter: brightness(1);
+
+  &:hover {
+    filter: brightness(1.3);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+  }
+
+  &.primary {
+    color: var(--headline);
+    background-color: var(--primary);
+  }
+
+  &.secondary {
+    color: var(--headline);
+    background-color: var(--secondary);
+  }
+`;
