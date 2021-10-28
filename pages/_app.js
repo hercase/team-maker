@@ -3,6 +3,7 @@ import "styles/globals.css";
 import "styles/tailwind.css";
 import "styles/date-picker.css";
 import styled, { ThemeProvider } from "styled-components";
+import Head from "next/head";
 
 const theme = {
   colors: {
@@ -30,6 +31,16 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={theme}>
       <StyledLayout>
+        <Head>
+          <title>Team Maker</title>
+          <meta property="og:title" content="Team Maker" key="title" />
+          <meta
+            name="description"
+            content="Vos tambien podes crear equipos rápidamente y compartilos de con tus amigos!"
+          />
+          <meta property="og:image" content="/img/maskable_logo.png" />
+          <meta property="og:url" content="https://teammaker.app/" />
+        </Head>
         <Component {...pageProps} />
       </StyledLayout>
     </ThemeProvider>
