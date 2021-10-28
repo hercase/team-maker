@@ -1,13 +1,12 @@
-import { useState } from "react";
-import { matchStore } from "store";
-import { useLocalStorage } from "hooks/useLocalStorage";
-
-import Layout from "components/templates/Layout";
+import Button from "components/atoms/Button";
 import DatePicker from "components/atoms/DatePicker";
 import Feedback from "components/templates/Feedback";
+import Layout from "components/templates/Layout";
+import { useLocalStorage } from "hooks/useLocalStorage";
 import { shuffle } from "lodash";
-import Button from "components/atoms/Button";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { matchStore } from "store";
 
 const Create = () => {
   const { location, setLocation, players, setPlayers, creator, setCreator, setMaxPlayers, max_players } = matchStore();
