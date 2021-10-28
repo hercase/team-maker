@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const StyledButton = styled.button`
   min-width: 40px;
-
   position: relative;
   align-items: center;
   border-color: rgba(203, 213, 224, 1);
