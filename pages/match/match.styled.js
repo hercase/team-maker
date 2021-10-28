@@ -1,19 +1,19 @@
-@use "src/sass/mixins";
+import styled from "styled-components";
 
-.match {
-  &__content {
+export const StyledMatch = styled.div`
+  & .content {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
   }
 
-  &__header {
+  & .header {
     display: flex;
     border-radius: var(--radius);
     overflow: hidden;
 
-    &__icon {
+    & .icon {
       display: flex;
       flex-shrink: 0;
       align-items: center;
@@ -23,7 +23,7 @@
       width: 4rem;
     }
 
-    &__data {
+    & .data {
       flex: 1;
       background-color: white;
       font-size: 0.875rem;
@@ -43,28 +43,4 @@
       font-weight: 500;
     }
   }
-}
-
-.shared {
-  width: 650px;
-  height: min-content;
-
-  &__header {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-/** Classes for the progress bar **/
-.Toastify__progress-bar.Toastify__progress-bar--default {
-  background: #2c3590;
-}
-
-.not-found {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding-top: 3rem;
-  color: var(--headline);
-}
+`;

@@ -25,3 +25,9 @@ export const subscribeByMatchId = async (id, callback) => {
 
   return docSnap.exists();
 };
+
+export const getMatchById = async (id) => {
+  const docRef = doc(db, "matches", id);
+  const docSnap = await getDoc(docRef);
+  return docSnap.data();
+};

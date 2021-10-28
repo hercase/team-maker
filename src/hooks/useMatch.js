@@ -1,9 +1,9 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router";
 import { subscribeByMatchId } from "services/firestore";
 
 const useMatch = (id) => {
-  const history = useHistory();
+  const router = useRouter();
   const [exist, setExists] = useState(null);
   const [match, setMatch] = useState();
 
@@ -13,7 +13,7 @@ const useMatch = (id) => {
     subscription.then((matchExist) => {
       setExists(matchExist);
     });
-  }, [history, id]);
+  }, [router, id]);
 
   return [match, exist];
 };

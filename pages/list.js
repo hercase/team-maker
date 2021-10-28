@@ -1,27 +1,24 @@
 import Alert from "components/atoms/Alert";
 import Button from "components/atoms/Button";
 import CheckIcon from "components/atoms/Icons/CheckIcon";
-import Logo from "components/atoms/Logo";
 import PlayersList from "components/molecules/PlayersList";
 import Feedback from "components/templates/Feedback";
 import Layout from "components/templates/Layout";
 import { format } from "date-fns";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { AnimateSharedLayout, motion } from "framer-motion";
-import { dataURLtoFile } from "helpers";
-import html2canvas from "html2canvas";
 import { shuffle } from "lodash";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { renderToString } from "react-dom/server";
+
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import app from "services/firebase";
 import { matchStore } from "store";
 import styled from "styled-components";
 import { es } from "date-fns/locale";
-
+import { generateShareImage } from "helpers";
 const ListTeam = () => {
   const db = getFirestore(app);
   const content = useRef();
@@ -69,53 +66,6 @@ const ListTeam = () => {
         ease: "easeInOut",
       },
     },
-  };
-
-  const generateShareImage = async (component, matchURL) => {
-    const canvas = await html2canvas(component, {
-      allowTaint: true,
-      removeContainer: true,
-      backgroundColor: "#171f6d",
-      height: component.offsetHeight + 70,
-      x: 0,
-      y: 0,
-      scrollX: 0,
-      scrollY: -50,
-      windowWidth: 650,
-      width: 666,
-      scale: 1,
-
-      onclone: (clone) => {
-        const content = clone.querySelector(".screenshot");
-
-        content.classList.add("shared");
-
-        const logo = (
-          <div className="header">
-            <Logo width={200} dark />
-          </div>
-        );
-        const stringComponent = renderToString(logo);
-
-        return content.insertAdjacentHTML("afterbegin", stringComponent);
-      },
-    });
-
-    const imgData = canvas.toDataURL("image/jpeg", 0.6);
-    const file = dataURLtoFile(imgData, "photo.jpg");
-
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: "Team Maker",
-          text: "Compartido desde Team Maker",
-          url: matchURL,
-          files: [file],
-        });
-      }
-    } catch (e) {
-      console.log("Error sharing list.");
-    }
   };
 
   const handleShare = async () => {

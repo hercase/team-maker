@@ -1,41 +1,41 @@
+import PropTypes from "prop-types";
 import { useRef } from "react";
-import "./styles.scss";
-import { ReactComponent as Versus } from "../../versus.svg";
-import { useParams, useHistory } from "react-router-dom";
-import { convertTimestampToDate } from "helpers";
+import Image from "next/image";
+import { StyledMatch } from "./match.styled";
+import Head from "next/head";
 
 // Services
-import { generateShareImage } from "./generateShareImage";
-import useMatch from "hooks/useMatch";
+import { getMatchById } from "services/firestore";
 
 // Components
 import Button from "components/atoms/Button";
 import Layout from "components/templates/Layout";
 import ShareIcon from "components/atoms/Icons/ShareIcon";
 import Feedback from "components/templates/Feedback";
-import PlayersList from "./PlayersList";
 import LoadingIcon from "components/atoms/Icons/LoadingIcon";
+import PlayersList from "components/molecules/PlayersList";
+import { convertTimestampToDate } from "helpers";
 
-const Match = () => {
-  const { id } = useParams();
-  const history = useHistory();
-  const [match, exists] = useMatch(id);
+const Match = ({ match }) => {
   const content = useRef();
+  const exists = match !== null;
 
-  const handleShare = () => {
-    generateShareImage(content.current);
-  };
+  const handleShare = () => {};
 
   // Constants
-  const totalPlayers = match?.teams.A?.length + match?.teams.B.length;
+  const totalPlayers = match.teams.A?.length + match.teams.B.length;
 
   return (
     <Layout>
+      <Head>
+        <title>{match.location} - Team Maker</title>
+        <meta property="og:title" content={`${match.location} - Team Maker`} key="title" />
+      </Head>
       {match ? (
-        <div className="match">
-          <div className="match__content screenshot" ref={content}>
-            <div className="match__header">
-              <div className="match__header__icon">
+        <StyledMatch>
+          <div className="content screenshot" ref={content}>
+            <div className="header">
+              <div className="icon">
                 <svg
                   width={30}
                   xmlns="http://www.w3.org/2000/svg"
@@ -51,11 +51,11 @@ const Match = () => {
                   />
                 </svg>
               </div>
-              <div className="match__header__data">
-                <p className="title">{match?.location}</p>
-                <p className="text-gray-500 capitalize">{convertTimestampToDate(match?.date)}</p>
+              <div className="data">
+                <p className="title">{match.location}</p>
+                <p className="text-gray-500 capitalize">{match.date}</p>
                 <p className="text-gray-500">
-                  creado por <span className="subtitle">{match?.admin}</span>
+                  creado por <span className="subtitle">{match.admin}</span>
                 </p>
                 <p className="text-gray-500">
                   {totalPlayers} / {match?.max_players} Jugadores
@@ -66,7 +66,7 @@ const Match = () => {
             <div style={{ minHeight: "100px" }} className="relative flex justify-center mb-5 text-center gap-3">
               <PlayersList players={match?.teams.A} color="#FFFFFF" />
               <div className="z-10 absolute bottom-3">
-                <Versus width={45} height={45} />
+                <Image alt="Versus icon" src="/img/versus.svg" width={45} height={45} />
               </div>
               <PlayersList players={match?.teams.B} color="#2C3590" />
             </div>
@@ -79,7 +79,7 @@ const Match = () => {
               </div>
             </Button>
           </div>
-        </div>
+        </StyledMatch>
       ) : exists === false ? (
         <div className="not-found">
           <p>No se encontro información...</p>
@@ -95,5 +95,21 @@ const Match = () => {
     </Layout>
   );
 };
+
+Match.propTypes = {
+  match: PropTypes.any,
+};
+
+export async function getServerSideProps({ params }) {
+  const match = await getMatchById(params.id);
+
+  const formatedMatch = { ...match, date: convertTimestampToDate(match.date) };
+
+  return {
+    props: {
+      match: formatedMatch,
+    }, // will be passed to the page component as props
+  };
+}
 
 export default Match;
