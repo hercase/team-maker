@@ -1,11 +1,10 @@
-import { renderToString } from "react-dom/server";
-
-// Strings
-
 import Logo from "components/atoms/Logo";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import html2canvas from "html2canvas";
+import { renderToString } from "react-dom/server";
+
+// Strings
 
 export function filterPlayers(str) {
   const regex = /[a-zÀ-ÿ\s]+/gi;
@@ -40,6 +39,10 @@ export const trucanteString = (str, maxChar) => {
     return str.substring(0, maxChar) + "...";
   }
   return str;
+};
+
+export const upperFirst = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
 // Files

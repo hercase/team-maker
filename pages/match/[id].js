@@ -12,12 +12,21 @@ import Button from "components/atoms/Button";
 import Layout from "components/templates/Layout";
 import ShareIcon from "components/atoms/Icons/ShareIcon";
 import Feedback from "components/templates/Feedback";
-import LoadingIcon from "components/atoms/Icons/LoadingIcon";
 import PlayersList from "components/molecules/PlayersList";
-import { convertTimestampToDate } from "helpers";
+import { convertTimestampToDate, upperFirst } from "helpers";
 
 const Match = ({ match }) => {
-  const handleShare = () => {};
+  const SEO = {
+    title: `${upperFirst(match.location)} - Team Maker`,
+    text: `${match.location} - ${upperFirst(
+      match.date
+    )} | Creado con Team Maker! Vos tambien podes crear equipos rápidamente y compartilos de con tus amigos!`,
+    url: match.url,
+  };
+
+  const handleShare = async () => {
+    await navigator.share(SEO);
+  };
 
   // Constants
   const totalPlayers = match.teams.A?.length + match.teams.B.length;
@@ -25,9 +34,11 @@ const Match = ({ match }) => {
   return (
     <Layout>
       <Head>
-        <title>{match.location} - Team Maker</title>
-        <meta property="og:title" content={`${match.location} - Team Maker`} key="title" />
-        <meta name="description" content={`${match.location} - ${match.date} -  | Creado con Team Maker`} />
+        <title>{SEO.title}</title>
+        <meta property="og:title" content={SEO.title} key="title" />
+        <meta name="description" content={SEO.text} />
+        <meta property="og:image" content="/img/maskable_logo.png" />
+        <meta property="og:url" content={SEO.url} />
       </Head>
 
       <StyledMatch>
@@ -47,7 +58,7 @@ const Match = ({ match }) => {
               <p className="title">{match.location}</p>
               <p className="text-gray-500 capitalize">{match.date}</p>
               <p className="text-gray-500">
-                creado por <span className="subtitle">{match.admin}</span>
+                creado por <span className="text-primary">{match.admin}</span>
               </p>
               <p className="text-gray-500">
                 {totalPlayers} / {match?.max_players} Jugadores
@@ -63,14 +74,14 @@ const Match = ({ match }) => {
             <PlayersList players={match?.teams.B} color="#2C3590" />
           </div>
         </div>
-        {/*  <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center">
           <Button onClick={handleShare} disabled={!match}>
             <div className="flex gap-4 w-full justify-center items-center px-6">
               <span>Compartir</span>
               <ShareIcon className="w-4 h-4" />
             </div>
           </Button>
-        </div> */}
+        </div>
       </StyledMatch>
 
       <div className="w-full text-center p-4 pin-b">
@@ -84,23 +95,25 @@ Match.propTypes = {
   match: PropTypes.any,
 };
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ req, params }) {
   const match = await getMatchById(params.id);
-    
-    if (!match) {
+
+  if (!match) {
     return {
       notFound: true,
     };
   }
 
-
-  const formatedMatch = { ...match, date: convertTimestampToDate(match.date) };
-
+  const formattedMatch = {
+    ...match,
+    url: `https://${req.headers.host}/match/${params.id}`,
+    date: convertTimestampToDate(match.date),
+  };
 
   return {
     props: {
-      match: formatedMatch,
-    }, // will be passed to the page component as props
+      match: formattedMatch,
+    },
   };
 }
 
