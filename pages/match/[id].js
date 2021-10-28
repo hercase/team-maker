@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { useRef } from "react";
 import Image from "next/image";
 import { StyledMatch } from "./match.styled";
 import Head from "next/head";

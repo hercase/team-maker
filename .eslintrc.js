@@ -33,7 +33,7 @@ module.exports = {
     "no-extra-semi": 2,
     "no-extra-boolean-cast": 2,
     "no-prototype-builtins": 2,
-    "no-unused-vars": 1,
+    "no-unused-vars": 2,
     "no-unused-expressions": 2,
     "default-case": 2,
     "jsx-a11y/alt-text": 2,
