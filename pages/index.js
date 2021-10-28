@@ -1,10 +1,10 @@
 import Button from "components/atoms/Button";
 import Logo from "components/atoms/Logo";
 import InstallPWA from "components/molecules/InstallPWA";
+import Carousel from "components/organisms/Carousel";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styled from "styled-components";
 
@@ -20,48 +20,12 @@ const Home = () => {
     router.push("/create");
   };
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 4000, min: 1200 },
-      items: 3,
-    },
-    table: {
-      breakpoint: { max: 1200, min: 850 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 850, min: 0 },
-      items: 1,
-    },
-  };
-
   return (
     <StyledHome>
       <section className="flex justify-center items-center h-full">
         <Logo height={30} />
       </section>
-      <Carousel
-        responsive={responsive}
-        infinite={true}
-        showDots={true}
-        removeArrowOnDeviceType={["mobile", "table", "desktop"]}
-        dotListClass="dots"
-      >
-        <CarrouselItem>
-          <Image alt="first-slide" src="/img/slide-1.svg" width={150} height={250} />
-          <p className="font-sans text-center text-xl">Escribe el nombre de las personas que van a participar</p>
-        </CarrouselItem>
-
-        <CarrouselItem>
-          <Image alt="second-slide" src="/img/slide-2.svg" width={150} height={250} />
-          <p className="font-sans text-center text-xl">Team Maker se encarga de mezclarlos aleatoriamente</p>
-        </CarrouselItem>
-
-        <CarrouselItem>
-          <Image alt="third-slide" src="/img/slide-3.svg" width={150} height={250} />
-          <p className="font-sans text-center text-xl">Comparte el resultado en donde quieras</p>
-        </CarrouselItem>
-      </Carousel>
+      <Carousel />
       <section className="footer">
         <svg className="footer__divider" viewBox="0 0 147 8">
           <g transform="translate(-25.771 -143.03)">
@@ -82,7 +46,7 @@ const Home = () => {
 
 const StyledHome = styled.div`
   display: grid;
-  grid-template-rows: 80px 1fr 10rem;
+  grid-template-rows: 80px 1fr 8rem;
   gap: 1rem;
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
@@ -97,7 +61,6 @@ const StyledHome = styled.div`
     width: 100%;
     height: 100%;
     padding-bottom: 0;
-    padding-top: 2rem;
     background: ${(props) => props.theme.colors.primaryDark};
 
     &__divider {
@@ -132,18 +95,8 @@ const StyledHome = styled.div`
 
   .react-multi-carousel-track {
     height: 100% !important;
-  }
-`;
+  }import Carousel from "./../src/components/organisms/Carousel/index";
 
-const CarrouselItem = styled.div`
-  display: grid;
-  grid-template-rows: 2fr 150px;
-  padding: 4rem 0;
-  align-items: start;
-  gap: 1rem;
-  height: 100%;
-  width: 90%;
-  margin: 0 auto;
 `;
 
 export default Home;

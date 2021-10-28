@@ -2,7 +2,7 @@ import Button from "components/atoms/Button";
 import DatePicker from "components/atoms/DatePicker";
 import Feedback from "components/templates/Feedback";
 import Layout from "components/templates/Layout";
-import { useLocalStorage } from "hooks/useLocalStorage";
+import useLocalStorage from "hooks/useLocalStorage";
 import { shuffle } from "lodash";
 import { useRouter } from "next/router";
 import { useState } from "react";
