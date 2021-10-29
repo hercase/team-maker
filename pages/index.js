@@ -95,8 +95,7 @@ const StyledHome = styled.div`
 
   .react-multi-carousel-track {
     height: 100% !important;
-  }import Carousel from "./../src/components/organisms/Carousel/index";
-
+  }
 `;
 
 export default Home;

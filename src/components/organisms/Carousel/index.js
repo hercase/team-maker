@@ -51,15 +51,16 @@ const Carousel = () => {
 const CarrouselItem = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
   gap: 1rem;
   height: 100%;
   width: 90%;
   margin: 0 auto;
 
   span {
-    font-size: 0.9rem;
+    font-family: "Open Sans", sans-serif;
     text-align: center;
+    font-style: italic;
   }
 `;
 
