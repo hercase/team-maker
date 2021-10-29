@@ -7,6 +7,7 @@ import { shuffle } from "lodash";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { matchStore } from "store";
+import Input from "components/atoms/Input/index";
 
 const Create = () => {
   const { location, setLocation, players, setPlayers, creator, setCreator, setMaxPlayers, max_players } = matchStore();
@@ -34,7 +35,7 @@ const Create = () => {
 
   return (
     <Layout>
-      <div className="flex flex-col p-5 gap-5 max-w-screen-xl mx-auto w-full">
+      <div className="flex flex-col p-5 gap-3 max-w-screen-xl mx-auto w-full">
         <div className="flex flex-col flex-auto w-full relative" style={{ maxHeight: "400px" }}>
           <textarea
             className="p-4 w-full flex-1 rounded-md resize-none"
@@ -57,28 +58,11 @@ const Create = () => {
           </div>
         </div>
         <p className="text-white font-sans">Datos del partido</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <input
-            type="text"
-            className="w-full rounded-md h-full p-2 block shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300"
-            placeholder="Lugar"
-            onChange={(e) => setPersistLocation(e.target.value)}
-            value={persistLocation}
-          />
-          <input
-            type="text"
-            className="w-full rounded-md h-full p-2 block shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300"
-            placeholder="Creador"
-            onChange={(e) => setCreator(e.target.value)}
-            value={creator}
-          />
-          <input
-            type="text"
-            className="w-full rounded-md h-full p-2 block shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300"
-            placeholder="Creador"
-            onChange={(e) => setMaxPlayers(e.target.value)}
-            value={max_players}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <Input label="Lugar" value={persistLocation} onChange={(e) => setPersistLocation(e.target.value)} />
+          <Input label="Creador" value={creator} onChange={(e) => setCreator(e.target.value)} />
+          <Input label="Max de Jugadores" value={max_players} onChange={(e) => setMaxPlayers(e.target.value)} />
+
           <DatePicker />
         </div>
 

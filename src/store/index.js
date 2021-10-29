@@ -9,12 +9,12 @@ export const matchStore = create(
       location: "",
       date: new Date(),
       creator: "",
-      max_players: 0,
+      max_players: 2,
       setLocation: (location) => set(() => ({ location })),
       setPlayers: (player) => set(() => ({ players: filterPlayers(player) })),
       setDate: (date) => set(() => ({ date })),
       setCreator: (creator) => set(() => ({ creator })),
-      setMaxPlayers: (max_players) => set(() => ({max_players}))
+      setMaxPlayers: (max_players) => set(() => ({ max_players })),
     }),
     "matchStore"
   )

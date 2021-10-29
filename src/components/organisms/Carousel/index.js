@@ -58,7 +58,6 @@ const CarrouselItem = styled.div`
   margin: 0 auto;
 
   span {
-    font-family: "Open Sans", sans-serif;
     text-align: center;
     font-style: italic;
   }

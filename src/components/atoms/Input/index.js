@@ -1,0 +1,54 @@
+import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const Input = ({ label, ...props }) => {
+  return (
+    <StyledInput>
+      <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+        {label}
+      </label>
+      <div className="mt-1">
+        <input {...props} />
+      </div>
+    </StyledInput>
+  );
+};
+
+const StyledInput = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  tab-size: 4;
+  text-size-adjust: 100%;
+  color: ${({ theme }) => theme.colors.paragraph};
+
+  input {
+    tab-size: 4;
+    box-sizing: border-box;
+    border-style: solid;
+    font-family: inherit;
+    margin: 0;
+    color: inherit;
+    appearance: none;
+    background-color: #fff;
+    border-width: 1px;
+    padding: 0.5rem 0.75rem;
+    display: block;
+    width: 100%;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-top: 4px;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+
+    &:focus {
+      outline-color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+`;
+
+Input.propTypes = {
+  label: PropTypes.any,
+};
+
+export default Input;

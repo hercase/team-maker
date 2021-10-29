@@ -22,7 +22,6 @@ const theme = {
 const StyledLayout = styled.div`
   background: ${(props) => props.theme.colors.primaryDark};
   color: ${(props) => props.theme.colors.paragraph};
-  font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
 `;
