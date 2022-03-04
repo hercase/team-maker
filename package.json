@@ -25,7 +25,10 @@
     "zustand": "^3.6.1"
   },
   "devDependencies": {
+    "@types/react": "^17.0.39",
+    "@types/styled-components": "^5.1.24",
     "eslint": "7",
-    "eslint-config-next": "12.0.0"
+    "eslint-config-next": "12.0.0",
+    "typescript": "^4.6.2"
   }
 }
