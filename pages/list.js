@@ -1,4 +1,3 @@
-import Alert from "components/atoms/Alert";
 import Button from "components/atoms/Button";
 import CheckIcon from "components/atoms/Icons/CheckIcon";
 import PlayersList from "components/molecules/PlayersList";
