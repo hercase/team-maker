@@ -23,10 +23,10 @@ const ListTeam = () => {
   const db = getFirestore(app);
   const content = useRef();
   const router = useRouter();
-  const { players, date, location, creator } = matchStore();
+  const { players, date, location, creator, random } = matchStore();
   const [names, setNames] = useState(players);
 
-  const [shuffling, setShuffling] = useState(true);
+  const [shuffling, setShuffling] = useState(false);
 
   const half = Math.ceil(players?.length / 2);
 
@@ -40,16 +40,16 @@ const ListTeam = () => {
   }, [router, players.length]);
 
   useEffect(() => {
-    if (shuffling) setTimeout(() => setNames(shuffle(names)), 500);
-  }, [names, shuffling]);
+    if (shuffling && random) setTimeout(() => setNames(shuffle(names)), 500);
+  }, [names, shuffling, random]);
 
   useEffect(() => {
-    setTimeout(() => setShuffling(false), 1500);
-  }, []);
-
-  useEffect(() => {
-    toast("Mezclando 🎲");
-  }, []);
+    if (random) {
+      setShuffling(true);
+      setTimeout(() => setShuffling(false), 1500);
+      toast("Mezclando 🎲");
+    }
+  }, [random]);
 
   const variants = {
     idle: {
@@ -104,6 +104,7 @@ const ListTeam = () => {
                 <p className="text-gray-900 font-medium hover:text-gray-600">{location}</p>
                 <p className="text-gray-500 capitalize">{format(date, "EEEE dd/MM - p", { locale: es })} hs </p>
                 <p className="text-gray-500">{players?.length} Jugadores</p>
+                {random && <p className="text-gray-500">Lista aleatoria 🎲</p>}
               </div>
             </div>
           </div>
@@ -111,7 +112,7 @@ const ListTeam = () => {
           <AnimateSharedLayout>
             <motion.div
               initial="idle"
-              animate={shuffling ? "shuffling" : "idle"}
+              animate={shuffling && random ? "shuffling" : "idle"}
               variants={variants}
               style={{ minHeight: "100px" }}
               className="relative flex justify-center mb-5 text-center gap-3"
@@ -123,7 +124,6 @@ const ListTeam = () => {
               <PlayersList players={secondHalf} color="#2C3590" />
             </motion.div>
           </AnimateSharedLayout>
-          <Alert text="La posición de los jugadores no determina el orden en que atajan." />
         </div>
         <div className="flex justify-center items-center">
           <Button onClick={handleShare} disabled={shuffling}>

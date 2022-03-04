@@ -21,6 +21,7 @@ const StyledInput = styled.div`
   tab-size: 4;
   text-size-adjust: 100%;
   color: ${({ theme }) => theme.colors.paragraph};
+  flex: 1;
 
   input {
     tab-size: 4;
