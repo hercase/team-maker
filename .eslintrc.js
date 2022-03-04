@@ -41,6 +41,15 @@ module.exports = {
     "array-callback-return": 2,
     "react-hooks/exhaustive-deps": 2,
     "react-hooks/rules-of-hooks": 2,
+    // max-lines
+    "max-lines": [
+      1,
+      {
+        max: 120,
+        skipBlankLines: true,
+        skipComments: true,
+      },
+    ],
   },
   settings: {
     react: {
