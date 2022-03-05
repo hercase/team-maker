@@ -13,7 +13,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: ["react", "jsx-a11y", "react-hooks", "@typescript-eslint"],
+  plugins: ["react", "jsx-a11y", "react-hooks"],
   rules: {
     eqeqeq: 2,
     "react/jsx-uses-react": 2,
@@ -50,7 +50,6 @@ module.exports = {
         skipComments: true,
       },
     ],
-    "@typescript-eslint/no-unused-vars": 0,
   },
   settings: {
     react: {

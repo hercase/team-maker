@@ -7,7 +7,13 @@ export const Input = styled.input`
   z-index: -1;
 `;
 
-export const Label = styled.label`
+interface ILabel {
+  title: string;
+  size: string;
+  disabled?: boolean;
+}
+
+export const Label = styled.label<ILabel>`
   position: relative;
   display: inline-block;
   font-size: ${(props) => {

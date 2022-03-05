@@ -1,5 +1,5 @@
 import ReactCarousel from "react-multi-carousel";
-import styled from "styled-components";
+
 import Image from "next/image";
 import useWindowSize from "hooks/useWindowSize";
 import { CarrouselItem } from "./Carousel.styled";

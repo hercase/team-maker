@@ -9,7 +9,7 @@ import { AnimateSharedLayout, motion } from "framer-motion";
 import { shuffle } from "lodash";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { RefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

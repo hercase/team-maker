@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import Button from "components/atoms/Button";
 import DatePicker from "components/atoms/DatePicker";
 import Feedback from "components/templates/Feedback";
@@ -6,7 +5,7 @@ import Layout from "components/templates/Layout";
 import useLocalStorage from "hooks/useLocalStorage";
 import { shuffle } from "lodash";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { matchStore } from "store";
 import Input from "components/atoms/Input";
 import ToggleSwitch from "components/atoms/ToggleSwitch";
@@ -30,7 +29,8 @@ const Create = () => {
   const router = useRouter();
 
   const handlePaste = () => {
-    navigator?.clipboard?.readText().then((clipText) => {
+    // eslint-disable-next-line no-unused-expressions
+    navigator?.clipboard.readText().then((clipText) => {
       handlePlayers(clipText);
     });
   };
