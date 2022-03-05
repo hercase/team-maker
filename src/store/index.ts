@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 import { filterPlayers } from "../helpers";

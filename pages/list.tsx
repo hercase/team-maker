@@ -18,7 +18,7 @@ import { matchStore } from "store";
 
 import { es } from "date-fns/locale";
 import { generateShareImage } from "helpers";
-import { StyledList } from "./list.styled";
+import styled from "styled-components";
 
 const ListTeam = () => {
   const db = getFirestore(app);
@@ -154,5 +154,21 @@ const ListTeam = () => {
     </Layout>
   );
 };
+
+export const StyledList = styled.div`
+  .shared {
+    width: 650px;
+    height: min-content;
+
+    & .header {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  /** Classes for the progress bar **/
+  .Toastify__progress-bar.Toastify__progress-bar--default {
+    background: #2c3590;
+  }
+`;
 
 export default ListTeam;
