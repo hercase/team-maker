@@ -9,20 +9,24 @@ import { AnimateSharedLayout, motion } from "framer-motion";
 import { shuffle } from "lodash";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import app from "services/firebase";
 import { matchStore } from "store";
-import styled from "styled-components";
+
 import { es } from "date-fns/locale";
 import { generateShareImage } from "helpers";
+import { StyledList } from "./list.styled";
+
 const ListTeam = () => {
   const db = getFirestore(app);
-  const content = useRef();
   const router = useRouter();
+  const content = useRef<HTMLDivElement>(null);
+
   const { players, date, location, creator, random } = matchStore();
+
   const [names, setNames] = useState(players);
 
   const [shuffling, setShuffling] = useState(false);
@@ -79,7 +83,7 @@ const ListTeam = () => {
     if (create.id) {
       let matchURL = `/match/${create.id}`;
       generateShareImage(content.current, matchURL);
-      history.push({ pathname: matchURL });
+      router.push({ pathname: matchURL });
     }
   };
 
@@ -150,21 +154,5 @@ const ListTeam = () => {
     </Layout>
   );
 };
-
-const StyledList = styled.div`
-  .shared {
-    width: 650px;
-    height: min-content;
-
-    & .header {
-      display: flex;
-      justify-content: center;
-    }
-  }
-  /** Classes for the progress bar **/
-  .Toastify__progress-bar.Toastify__progress-bar--default {
-    background: #2c3590;
-  }
-`;
 
 export default ListTeam;
