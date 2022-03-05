@@ -4,7 +4,7 @@ import InstallPWA from "components/molecules/InstallPWA";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
-import styled from "styled-components";
+import { StyledLayout } from "./Layout.styled";
 
 const Layout = ({ children }) => {
   useEffect(() => {
@@ -26,20 +26,6 @@ const Layout = ({ children }) => {
     </StyledLayout>
   );
 };
-
-const StyledLayout = styled.div`
-  display: grid;
-  grid-template-rows: 60px 1fr 60px;
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 95vw;
-
-  .link {
-    cursor: pointer;
-  }
-`;
 
 Layout.propTypes = {
   children: PropTypes.any,

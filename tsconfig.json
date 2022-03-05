@@ -16,7 +16,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  // add SRC folder
-  "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx", "src/types/index.js"],
-  "exclude": ["node_modules", ".next", "out", "**/*.js", "**/*.jsx"]
+  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.js", "**/*.tsx"]
 }

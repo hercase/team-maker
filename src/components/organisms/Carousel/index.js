@@ -2,6 +2,7 @@ import ReactCarousel from "react-multi-carousel";
 import styled from "styled-components";
 import Image from "next/image";
 import useWindowSize from "hooks/useWindowSize";
+import { CarrouselItem } from "./Carousel.styled";
 
 const Carousel = () => {
   const [screenWidth] = useWindowSize();
@@ -47,20 +48,5 @@ const Carousel = () => {
     </ReactCarousel>
   );
 };
-
-const CarrouselItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  gap: 1rem;
-  height: 100%;
-  width: 90%;
-  margin: 0 auto;
-
-  span {
-    text-align: center;
-    font-style: italic;
-  }
-`;
 
 export default Carousel;

@@ -1,6 +1,4 @@
 import PropTypes from "prop-types";
-import * as React from "react";
-
 function Logo({ dark, ...props }) {
   return (
     <svg viewBox="0 0 286 39" xmlns="http://www.w3.org/2000/svg" {...props}>

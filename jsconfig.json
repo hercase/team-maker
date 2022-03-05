@@ -1,6 +1,0 @@
-{
-  // the rest of your TS config
-  "compilerOptions": {
-    "baseUrl": "./src"
-  }
-}
