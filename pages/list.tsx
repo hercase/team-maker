@@ -27,9 +27,8 @@ const ListTeam = () => {
   const content = useRef<HTMLDivElement>(null);
 
   const { players, date, location, creator, random } = matchStore();
-  const [colorA, setColorA] = useLocalStorage("color-A", "#ffffff");
-  const [colorB, setColorB] = useLocalStorage("color-B", "#2C3590");
-  console.log("🚀", colorA, colorB);
+  const [colorA, setColorA] = useLocalStorage("colorA", "#ffffff");
+  const [colorB, setColorB] = useLocalStorage("colorB", "#2C3590");
 
   const [names, setNames] = useState(players);
 
