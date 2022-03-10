@@ -13,8 +13,12 @@ import Feedback from "components/templates/Feedback";
 import PlayersList from "components/molecules/PlayersList";
 import { convertTimestampToDate, upperFirst } from "helpers";
 import styled from "styled-components";
+import useLocalStorage from "hooks/useLocalStorage";
 
 const Match = ({ match }) => {
+  const [colorA, setColorA] = useLocalStorage("color-A", "#ffffff");
+  const [colorB, setColorB] = useLocalStorage("color-B", "#2C3590");
+
   const SEO = {
     title: `${upperFirst(match.location)} - Team Maker`,
     text: `${match.location} - ${upperFirst(
@@ -66,11 +70,11 @@ const Match = ({ match }) => {
           </div>
 
           <div style={{ minHeight: "100px" }} className="relative flex justify-center mb-5 text-center gap-3">
-            <PlayersList players={match?.teams.A} color="#FFFFFF" />
+            <PlayersList players={match?.teams.A} color={colorA} setColor={setColorA} />
             <div className="z-10 absolute bottom-3">
               <Image alt="Versus icon" src="/img/versus.svg" width={45} height={45} />
             </div>
-            <PlayersList players={match?.teams.B} color="#2C3590" />
+            <PlayersList players={match?.teams.B} color={colorB} setColor={setColorB} />
           </div>
         </div>
         <div className="flex justify-center items-center">

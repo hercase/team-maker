@@ -19,6 +19,7 @@ import { matchStore } from "store";
 import { es } from "date-fns/locale";
 import { generateShareImage } from "helpers";
 import styled from "styled-components";
+import useLocalStorage from "hooks/useLocalStorage";
 
 const ListTeam = () => {
   const db = getFirestore(app);
@@ -26,6 +27,9 @@ const ListTeam = () => {
   const content = useRef<HTMLDivElement>(null);
 
   const { players, date, location, creator, random } = matchStore();
+  const [colorA, setColorA] = useLocalStorage("color-A", "#ffffff");
+  const [colorB, setColorB] = useLocalStorage("color-B", "#2C3590");
+  console.log("🚀", colorA, colorB);
 
   const [names, setNames] = useState(players);
 
@@ -120,11 +124,11 @@ const ListTeam = () => {
               style={{ minHeight: "100px" }}
               className="relative flex justify-center mb-5 text-center gap-3"
             >
-              <PlayersList players={firstHalf} color="#FFFFFF" />
+              <PlayersList players={firstHalf} color={colorA} setColor={setColorA} />
               <div className="z-10 absolute bottom-3">
                 <Image alt="Versus icon" src="/img/versus.svg" width={45} height={45} />
               </div>
-              <PlayersList players={secondHalf} color="#2C3590" />
+              <PlayersList players={secondHalf} color={colorB} setColor={setColorB} />
             </motion.div>
           </AnimateSharedLayout>
         </div>

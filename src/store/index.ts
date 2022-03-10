@@ -27,6 +27,7 @@ export const matchStore = create<MatchState>(
       creator: "",
       max_players: 2,
       random: true,
+      colors: ["#ffffff", "#2C3590"],
       setLocation: (location) => set(() => ({ location })),
       setPlayers: (players) => set(() => ({ players: filterPlayers(players) })),
       setDate: (date) => set(() => ({ date })),
