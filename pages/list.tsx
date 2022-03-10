@@ -20,6 +20,7 @@ import { es } from "date-fns/locale";
 import { generateShareImage } from "helpers";
 import styled from "styled-components";
 import useLocalStorage from "hooks/useLocalStorage";
+import { variants } from "styles/variants";
 
 const ListTeam = () => {
   const db = getFirestore(app);
@@ -56,23 +57,6 @@ const ListTeam = () => {
       toast("Mezclando 🎲");
     }
   }, [random]);
-
-  const variants = {
-    idle: {
-      x: 0,
-      rotate: [-0.5, 0.5, -0.4, 0.4, -0.2, 0.2, 0],
-      transition: { type: "spring" },
-    },
-    shuffling: {
-      x: [0.2, -0.2],
-      rotate: [0.5, -0.5],
-      transition: {
-        flip: Infinity,
-        duration: 0.3,
-        ease: "easeInOut",
-      },
-    },
-  };
 
   const handleShare = async () => {
     const create = await addDoc(collection(db, "matches"), {
@@ -132,12 +116,15 @@ const ListTeam = () => {
           </AnimateSharedLayout>
         </div>
         <div className="flex justify-center items-center">
-          <Button onClick={handleShare} disabled={shuffling}>
+          <Button onClick={handleShare} disabled={shuffling || colorA === colorB}>
             <div className="flex gap-4 w-full justify-center items-center px-6">
               <span>Listo</span>
               <CheckIcon className="w-4 h-4" />
             </div>
           </Button>
+        </div>
+        <div className="flex justify-center p-4">
+          {colorA === colorB && <p>Los colores de los equipos deben ser distintos</p>}
         </div>
         <ToastContainer
           position="bottom-center"
