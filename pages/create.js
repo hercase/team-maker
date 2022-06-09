@@ -9,22 +9,13 @@ import { useState } from "react";
 import { matchStore } from "store";
 import Input from "components/atoms/Input";
 import ToggleSwitch from "components/atoms/ToggleSwitch";
+import styled from "styled-components";
 
 const Create = () => {
-  const {
-    location,
-    setLocation,
-    players,
-    setPlayers,
-    creator,
-    setCreator,
-    setMaxPlayers,
-    max_players,
-    random,
-    setRandom,
-  } = matchStore();
+  const { location, setLocation, players, setPlayers, creator, random, setRandom } = matchStore();
 
   const [persistLocation, setPersistLocation] = useLocalStorage("match-location", location);
+  const [persistCreator, setPersistCreator] = useLocalStorage("creator", creator);
   const [value, setValue] = useState("");
   const router = useRouter();
 
@@ -73,20 +64,14 @@ const Create = () => {
           </div>
         </div>
         <p className="text-white font-sans">Datos del partido</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <StyledForm>
           <Input label="Lugar" value={persistLocation} onChange={(e) => setPersistLocation(e.target.value)} />
-          <Input label="Creador" value={creator} onChange={(e) => setCreator(e.target.value)} />
-          <div className="flex gap-3">
-            <Input
-              className="flex-1"
-              label="Max de Jugadores"
-              value={max_players}
-              onChange={(e) => setMaxPlayers(e.target.value)}
-            />
-
+          <Input label="Creador" value={persistCreator} onChange={(e) => setPersistCreator(e.target.value)} />
+          <div className="date-picker">
+            <DatePicker />
             <div className="flex flex-col">
-              <span className="block text-sm font-medium text-gray-700">Aleatorio</span>
-              <div className="flex items-center justify-center h-full">
+              <span className="block text-sm font-medium text-gray-700 mb-2">Aleatorio</span>
+              <div className="flex h-full">
                 <ToggleSwitch
                   title="Crear lista de manera aleatoria"
                   size="sm"
@@ -100,8 +85,7 @@ const Create = () => {
               </div>
             </div>
           </div>
-          <DatePicker />
-        </div>
+        </StyledForm>
 
         <div className="flex justify-center w-full">
           <Button disabled={players.length > 1 ? false : true} type="submit" onClick={() => CreateTeams()}>
@@ -115,5 +99,21 @@ const Create = () => {
     </Layout>
   );
 };
+
+const StyledForm = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+
+  & .date-picker {
+    display: flex;
+    gap: 0.5rem;
+    grid-column: 1 / -1;
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
 
 export default Create;

@@ -7,6 +7,7 @@ export const StyledDatePicker = styled.div`
   tab-size: 4;
   text-size-adjust: 100%;
   color: ${({ theme }) => theme.colors.paragraph};
+  width: 100%;
 
   input {
     tab-size: 4;
