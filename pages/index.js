@@ -43,15 +43,13 @@ const Home = () => {
         </svg>
         <div className="footer__content">
           <Image alt="isotipo" src="/img/isotipo.svg" height={50} width={50} />
-          <div className="flex gap-3">
-            <InstallPWA />
-            <label className="hide-intro">
-              <Checkbox checked={introIsHidden} onChange={() => setIntroIsHidden(true)} />
-              No volver a mostrar
-            </label>
 
-            <Button onClick={navigate}>Comenzar</Button>
-          </div>
+          <Button onClick={navigate}>Comenzar</Button>
+          <InstallPWA />
+          <label className="hide-intro">
+            <Checkbox checked={introIsHidden} onChange={() => setIntroIsHidden(true)} />
+            <small>No volver a mostrar</small>
+          </label>
         </div>
       </section>
     </StyledHome>
@@ -86,10 +84,12 @@ const StyledHome = styled.div`
     }
 
     &__content {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 5rem min-content;
+      column-gap: 1rem;
       align-items: center;
-      padding: 0 2rem;
+      padding: 0 1rem;
       height: 100%;
     }
   }
@@ -117,6 +117,7 @@ const StyledHome = styled.div`
     align-items: center;
     font-size: 0.9rem;
     color: white;
+    margin: 0 auto;
   }
 `;
 

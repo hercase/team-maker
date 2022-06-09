@@ -104,6 +104,7 @@ const StyledForm = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.5rem;
+  margin-bottom: 1rem;
 
   & .date-picker {
     display: flex;

@@ -1,5 +1,5 @@
-import Button from "components/atoms/Button";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import { ImDownload } from "react-icons/im";
 
 const InstallPWA = () => {
@@ -39,15 +39,24 @@ const InstallPWA = () => {
   };
 
   if (!supportsPWA || isInstalled) {
-    return null;
+    return <div></div>;
   }
   return (
-    <>
-      <Button onClick={handleInstall}>
-        <ImDownload size={20} color="#171F6D" />
-      </Button>
-    </>
+    <StyledButton onClick={handleInstall}>
+      <ImDownload size={15} color="white" />
+      Install PWA
+    </StyledButton>
   );
 };
+
+const StyledButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: underline;
+  font-size: 0.8rem;
+  color: white;
+`;
 
 export default InstallPWA;
