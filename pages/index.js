@@ -1,7 +1,11 @@
+/* eslint-disable no-constant-condition */
 import Button from "components/atoms/Button";
+import Checkbox from "components/atoms/Checkbox";
 import Logo from "components/atoms/Logo";
 import InstallPWA from "components/molecules/InstallPWA";
+import LoadingScreen from "components/molecules/LoadingScreen";
 import Carousel from "components/organisms/Carousel";
+import useLocalStorage from "hooks/useLocalStorage";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -10,15 +14,20 @@ import styled from "styled-components";
 
 const Home = () => {
   const router = useRouter();
+  const [introIsHidden, setIntroIsHidden] = useLocalStorage("HIDDEN-INTRO", false);
 
   useEffect(() => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
-  }, []);
+
+    if (introIsHidden) router.push("/create");
+  }, [introIsHidden, router]);
 
   const navigate = () => {
     router.push("/create");
   };
+
+  if (introIsHidden) return <LoadingScreen />;
 
   return (
     <StyledHome>
@@ -34,10 +43,13 @@ const Home = () => {
         </svg>
         <div className="footer__content">
           <Image alt="isotipo" src="/img/isotipo.svg" height={50} width={50} />
-          <div className="flex gap-3">
-            <InstallPWA />
-            <Button onClick={navigate}>Comenzar</Button>
-          </div>
+
+          <Button onClick={navigate}>Comenzar</Button>
+          <InstallPWA />
+          <label className="hide-intro">
+            <Checkbox checked={introIsHidden} onChange={() => setIntroIsHidden(true)} />
+            <small>No volver a mostrar</small>
+          </label>
         </div>
       </section>
     </StyledHome>
@@ -72,10 +84,12 @@ const StyledHome = styled.div`
     }
 
     &__content {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 5rem min-content;
+      column-gap: 1rem;
       align-items: center;
-      padding: 0 2rem;
+      padding: 0 1rem;
       height: 100%;
     }
   }
@@ -95,6 +109,15 @@ const StyledHome = styled.div`
 
   .react-multi-carousel-track {
     height: 100% !important;
+  }
+
+  .hide-intro {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.9rem;
+    color: white;
+    margin: 0 auto;
   }
 `;
 
